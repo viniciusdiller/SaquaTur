@@ -15,7 +15,7 @@ export const defaultWaveData: WaveData = {
   temperature: 27,
   weatherCode: 1,
   windSpeed: 16,
-  windDirection: 120
+  windDirection: 120,
 };
 
 export const praias = [
@@ -24,35 +24,44 @@ export const praias = [
     nome: "Praia de Itaúna",
     slug: "itauna",
     descricao_curta: "Pico clássico da WSL com ondas de classe mundial.",
-    descricao: "Itaúna é referência internacional do surf brasileiro, com ondas constantes e atmosfera vibrante durante todo o ano.",
+    descricao:
+      "Itaúna é referência internacional do surf brasileiro, com ondas constantes e atmosfera vibrante durante todo o ano.",
     filtros: ["surf"],
     acessivel: true,
     dificuldade: "avançado",
     estacionamento: true,
-    quiosques: true
+    quiosques: true,
+    lat: -22.9358, // Adicione isto
+    lng: -42.4779,
   },
   {
     id: 2,
     nome: "Praia da Vila",
     slug: "vila",
     descricao_curta: "Faixa extensa de areia com excelente estrutura urbana.",
-    descricao: "A Praia da Vila combina mar aberto, calçadão e fácil acesso para famílias e visitantes.",
+    descricao:
+      "A Praia da Vila combina mar aberto, calçadão e fácil acesso para famílias e visitantes.",
     filtros: ["família"],
     acessivel: true,
     dificuldade: "iniciante",
     estacionamento: true,
-    quiosques: true
+    quiosques: true,
+    lat: -22.9372,
+    lng: -42.4952,
   },
   {
     id: 3,
     nome: "Praia de Jaconé",
     slug: "jacone",
     descricao_curta: "Natureza preservada e mar com energia para o surf.",
-    descricao: "Jaconé oferece um visual rústico e conexão com a paisagem local, ideal para quem busca tranquilidade.",
+    descricao:
+      "Jaconé oferece um visual rústico e conexão com a paisagem local, ideal para quem busca tranquilidade.",
     filtros: ["surf", "família"],
     acessivel: false,
     dificuldade: "intermediário",
     estacionamento: true,
-    quiosques: false
-  }
+    quiosques: false,
+    lat: -22.9327,
+    lng: -42.5961,
+  },
 ];
