@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Saquarema Teal Official #006e6d → hsl(179.5, 100%, 21.6%) */
+    --primary: 179.5 100% 21.6%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Sand White #F8F9FA */
+    --background: 210 16.7% 97.6%;
+    --foreground: 197.3 37.2% 23.7%;
+
+    /* Card */
+    --card: 0 0% 100%;
+    --card-foreground: 197.3 37.2% 23.7%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 197.3 37.2% 23.7%;
+
+    /* Clear Sky #00A5CF */
+    --secondary: 192 100% 40.6%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 20% 94%;
+    --muted-foreground: 197 20% 40%;
+
+    /* Sunset Gold #F4A261 */
+    --accent: 26.5 87.3% 66.9%;
+    --accent-foreground: 197.3 37.2% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 179.5 100% 21.6%;
+
+    --radius: 0.75rem;
+
+    /* Restinga Green #2A9D8F */
+    --restinga: 172.7 57.8% 39%;
+
+    /* Wet Rock #264653 */
+    --wet-rock: 197.3 37.2% 23.7%;
+
+    /* Sunset Gold for CTA */
+    --sunset: 26.5 87.3% 66.9%;
+
+    --sidebar-background: 179.5 100% 21.6%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 179.5 100% 21.6%;
+    --sidebar-accent: 179.5 80% 18%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 179.5 60% 16%;
+    --sidebar-ring: 26.5 87.3% 66.9%;
+  }
+
+  .dark {
+    --primary: 179.5 80% 30%;
+    --primary-foreground: 0 0% 100%;
+    --background: 197.3 37.2% 10%;
+    --foreground: 210 16.7% 90%;
+    --card: 197.3 37.2% 14%;
+    --card-foreground: 210 16.7% 90%;
+    --popover: 197.3 37.2% 14%;
+    --popover-foreground: 210 16.7% 90%;
+    --secondary: 192 80% 30%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 197 30% 20%;
+    --muted-foreground: 210 16% 60%;
+    --accent: 26.5 87.3% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 197 30% 22%;
+    --input: 197 30% 22%;
+    --ring: 179.5 80% 30%;
+    --sidebar-background: 197.3 37.2% 10%;
+    --sidebar-foreground: 210 16.7% 90%;
+    --sidebar-primary: 179.5 80% 30%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 197 30% 20%;
+    --sidebar-accent-foreground: 210 16.7% 90%;
+    --sidebar-border: 197 30% 18%;
+    --sidebar-ring: 26.5 87.3% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oswald', sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Oswald', sans-serif;
+  }
+  .font-handwritten {
+    font-family: 'Caveat', cursive;
+  }
+}
