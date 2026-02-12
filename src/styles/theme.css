@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: 179.5 100% 21.6%;
+    --primary-foreground: 0 0% 100%;
+    --background: 210 16.7% 97.6%;
+    --foreground: 197.3 37.2% 23.7%;
+    --card: 0 0% 100%;
+    --card-foreground: 197.3 37.2% 23.7%;
+    --secondary: 192 100% 40.6%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 20% 94%;
+    --muted-foreground: 197 20% 40%;
+    --accent: 26.5 87.3% 66.9%;
+    --accent-foreground: 197.3 37.2% 15%;
+    --border: 210 20% 88%;
+    --ring: 179.5 100% 21.6%;
+    --radius: 0.75rem;
+    --restinga: 172.7 57.8% 39%;
+  }
+
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground font-sans; }
+
+  h1, h2, h3, h4, h5, h6 { font-family: 'Oswald', sans-serif; }
+}
+
+@layer utilities {
+  .font-display { font-family: 'Oswald', sans-serif; }
+  .font-handwritten { font-family: 'Caveat', cursive; }
+}
