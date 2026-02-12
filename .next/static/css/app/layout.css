@@ -852,15 +852,12 @@ h1, h2, h3, h4, h5, h6 {
 .font-display {
     font-family: 'Oswald', sans-serif;
   }
-
 .hover\:text-accent:hover{
   color: hsl(var(--accent));
 }
-
 .hover\:opacity-90:hover{
   opacity: 0.9;
 }
-
 @media (min-width: 768px){
 
   .md\:grid-cols-2{
