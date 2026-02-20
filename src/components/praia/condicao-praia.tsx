@@ -1,11 +1,19 @@
 "use client";
 
-import { Compass, Thermometer, Waves, Wind } from "lucide-react";
+import { Compass, Thermometer, Waves, Wind, Loader2 } from "lucide-react";
 import { useWaveData } from "@/hooks/useWaveData";
 import { ReactNode } from "react";
 
 export function BeachConditions({ lat, lng }: { lat: number; lng: number }) {
   const { data } = useWaveData({ lat, lng });
+
+  if (!data) {
+    return (
+      <div className="mb-12 flex justify-center py-4">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div className="mb-12 grid grid-cols-2 gap-4 md:grid-cols-4">

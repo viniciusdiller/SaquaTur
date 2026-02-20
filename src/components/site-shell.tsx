@@ -9,7 +9,16 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <Navbar weather={{ temperature: data.temperature, waveHeight: data.waveHeight }} />
+      <Navbar
+        weather={
+          data
+            ? {
+                temperature: data.temperature,
+                waveHeight: data.waveHeight,
+              }
+            : undefined
+        }
+      />
       <main>{children}</main>
       <Footer />
     </>

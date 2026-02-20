@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { defaultWaveData, type WaveData } from "@/lib/static-data";
 
 export function useWaveData({ lat, lng }: { lat?: number; lng?: number } = {}) {
-  const [data, setData] = useState<WaveData>(defaultWaveData);
-
+  const [data, setData] = useState<WaveData | null>(null);
   useEffect(() => {
     // Se não houver coordenadas (ex: carregamento inicial), não faz nada ou mantém o padrão
     if (!lat || !lng) return;
@@ -53,11 +52,6 @@ export function useWaveData({ lat, lng }: { lat?: number; lng?: number } = {}) {
         if (error.name === "AbortError") return;
 
         console.error("Erro ao carregar dados da API:", error);
-
-        // Se deu erro real, volta para o padrão (apenas se ainda estiver montado)
-        if (!signal.aborted) {
-          setData(defaultWaveData);
-        }
       }
     }
 
