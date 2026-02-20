@@ -10,7 +10,9 @@ const navLinks = [
   { label: "Praias", to: "/praias" },
   { label: "Cultura", to: "/cultura" },
   { label: "Eventos", to: "/eventos" },
-  { label: "Gastronomia", to: "/gastronomia" }
+  { label: "Gastronomia", to: "/gastronomia" },
+  { label: "Serviços Para o Turista", to: "/servicos" },
+  { label: "Explore Saqua", to: "https://meidesaqua.saquarema.rj.gov.br/" },
 ];
 
 interface WeatherData {
@@ -30,16 +32,28 @@ export function Navbar({ weather }: { weather?: WeatherData }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const bgClass = scrolled || !isHome ? "bg-primary/95 backdrop-blur-md shadow-lg py-3" : "bg-transparent py-5";
+  const bgClass =
+    scrolled || !isHome
+      ? "bg-primary/95 backdrop-blur-md shadow-lg py-3"
+      : "bg-transparent py-5";
 
   return (
-    <header className={`fixed top-0 z-50 w-full transition-all duration-300 ${bgClass}`}>
+    <header
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${bgClass}`}
+    >
       <nav className="container mx-auto flex items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-2 text-primary-foreground">
+        <Link
+          href="/"
+          className="flex items-center gap-2 text-primary-foreground"
+        >
           <Waves className="h-8 w-8" />
           <div>
-            <span className="font-display text-xl font-bold tracking-wide">SAQUAREMA</span>
-            <span className="block text-[10px] font-sans uppercase tracking-[0.2em] opacity-80">Capital Nacional do Surf</span>
+            <span className="font-display text-xl font-bold tracking-wide">
+              SAQUAREMA
+            </span>
+            <span className="block text-[10px] font-sans uppercase tracking-[0.2em] opacity-80">
+              Capital Nacional do Surf
+            </span>
           </div>
         </Link>
 
@@ -64,13 +78,24 @@ export function Navbar({ weather }: { weather?: WeatherData }) {
               <span>🌊 {weather.waveHeight?.toFixed(1) ?? "--"}m</span>
             </div>
           )}
-          <button className="text-primary-foreground/80 transition-colors hover:text-primary-foreground" aria-label="Buscar">
+          <button
+            className="text-primary-foreground/80 transition-colors hover:text-primary-foreground"
+            aria-label="Buscar"
+          >
             <Search className="h-5 w-5" />
           </button>
         </div>
 
-        <button className="text-primary-foreground md:hidden" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Menu">
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        <button
+          className="text-primary-foreground md:hidden"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Menu"
+        >
+          {mobileOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
         </button>
       </nav>
 
@@ -85,7 +110,11 @@ export function Navbar({ weather }: { weather?: WeatherData }) {
             <ul className="flex flex-col items-center gap-4 py-6">
               {navLinks.map((link) => (
                 <li key={link.to}>
-                  <Link href={link.to} onClick={() => setMobileOpen(false)} className="font-display text-lg uppercase tracking-wide text-primary-foreground">
+                  <Link
+                    href={link.to}
+                    onClick={() => setMobileOpen(false)}
+                    className="font-display text-lg uppercase tracking-wide text-primary-foreground"
+                  >
                     {link.label}
                   </Link>
                 </li>
