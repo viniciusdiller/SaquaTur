@@ -1,13 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { motion, Variants } from "framer-motion"; // <-- Adicionamos Variants
+import { motion, Variants } from "framer-motion";
 import { ArrowLeft, CalendarDays, MapPin } from "lucide-react";
 import type { MesData } from "@/lib/eventos";
 
-// Mudamos para export default
 export default function MesClient({ mesAtual }: { mesAtual: MesData }) {
-  // Adicionamos : Variants
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
@@ -22,12 +20,20 @@ export default function MesClient({ mesAtual }: { mesAtual: MesData }) {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    // AQUI: Envolvemos tudo em um motion.div que começa um pouco maior (scale 1.05)
+    // e diminui para o tamanho normal (scale 1), completando o zoom in da tela anterior.
+    <motion.div
+      initial={{ opacity: 0, scale: 1.05 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="min-h-screen bg-background"
+    >
       <section className="bg-primary px-4 pb-16 pt-32 relative overflow-hidden">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
           className="container mx-auto max-w-5xl text-center relative z-10"
         >
           <Link
@@ -51,7 +57,7 @@ export default function MesClient({ mesAtual }: { mesAtual: MesData }) {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.3 }}
             className="mb-12 text-center font-display text-3xl uppercase text-primary md:text-4xl"
           >
             Programação
@@ -104,6 +110,6 @@ export default function MesClient({ mesAtual }: { mesAtual: MesData }) {
           )}
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }

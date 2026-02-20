@@ -1,9 +1,14 @@
 "use client";
 
-import Link from "next/link";
-import { motion, Variants } from "framer-motion"; // <-- Adicionamos Variants aqui
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { motion, Variants } from "framer-motion";
 
 export default function EventosPage() {
+  const router = useRouter();
+  // Estado para saber qual card foi clicado
+  const [clickedCard, setClickedCard] = useState<string | null>(null);
+
   const meses = [
     [
       "Janeiro",
@@ -67,7 +72,6 @@ export default function EventosPage() {
     ],
   ];
 
-  // Adicionamos : Variants para corrigir o TypeScript
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
@@ -81,13 +85,22 @@ export default function EventosPage() {
     show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } },
   };
 
+  const handleCardClick = (slug: string) => {
+    setClickedCard(slug); // Aciona a animação no card clicado
+
+    // Aguarda 400ms (tempo do zoom) para mudar de página
+    setTimeout(() => {
+      router.push(`/eventos/${slug}`);
+    }, 400);
+  };
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-hidden">
       <section className="bg-primary px-4 pb-12 pt-32">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          animate={clickedCard ? { opacity: 0, y: -20 } : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
           className="container mx-auto text-center"
         >
           <h1 className="font-display text-5xl font-bold uppercase text-primary-foreground md:text-6xl">
@@ -99,7 +112,7 @@ export default function EventosPage() {
         </motion.div>
       </section>
 
-      <section className="container mx-auto px-4 py-16">
+      <section className="container mx-auto px-4 py-16 relative">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -107,18 +120,37 @@ export default function EventosPage() {
           className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
         >
           {meses.map(([titulo, desc, slug]) => (
-            <motion.div key={slug} variants={itemVariants}>
-              <Link href={`/eventos/${slug}`} className="block h-full group">
-                <article className="h-full rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-primary/50 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  <h2 className="font-display text-2xl uppercase text-primary transition-colors group-hover:text-accent">
-                    {titulo}
-                  </h2>
-                  <p className="mt-2 text-sm text-muted-foreground relative z-10">
-                    {desc}
-                  </p>
-                </article>
-              </Link>
+            <motion.div
+              key={slug}
+              variants={itemVariants}
+              // A MÁGICA ACONTECE AQUI:
+              // Se foi clicado -> Zoom gigante e some
+              // Se outro foi clicado -> Apenas some devagar
+              // Se nenhum foi clicado -> Fica normal
+              animate={
+                clickedCard === slug
+                  ? {
+                      scale: 3,
+                      opacity: 0,
+                      zIndex: 50,
+                      transition: { duration: 0.5, ease: "easeInOut" },
+                    }
+                  : clickedCard
+                    ? { opacity: 0, scale: 0.9, transition: { duration: 0.3 } }
+                    : "show"
+              }
+              onClick={() => handleCardClick(slug)}
+              className="block h-full group cursor-pointer relative"
+            >
+              <article className="h-full rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-primary/50 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <h2 className="font-display text-2xl uppercase text-primary transition-colors group-hover:text-accent">
+                  {titulo}
+                </h2>
+                <p className="mt-2 text-sm text-muted-foreground relative z-10">
+                  {desc}
+                </p>
+              </article>
             </motion.div>
           ))}
         </motion.div>
